@@ -2,6 +2,7 @@ from textsummariser.constants import *
 from textsummariser.utils.common import read_yaml, create_directories
 from textsummariser.entity import DataIngestionConfig
 from textsummariser.entity import DataValidationconfig
+from textsummariser.entity import DataTransformationconfig
 
 
 class ConfigurationManager:
@@ -44,4 +45,18 @@ class ConfigurationManager:
                 ALL_REQUIRED_FILES= config.ALL_REQUIRED_FILES,
           ) 
 
-          return data_validation_config     
+          return data_validation_config   
+
+
+    def get_data_transformation_config(self) ->DataTransformationconfig:
+          config =self.config.data_transformation
+
+          create_directories([config.root_dir])  
+
+          data_transformation_config=DataTransformationconfig(
+                root_dir=config.root_dir,
+                data_path=config.data_path,
+                tokenizer_name=config.tokenizer_name,
+          )  
+
+          return data_transformation_config    

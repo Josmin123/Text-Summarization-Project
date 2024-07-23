@@ -13,4 +13,11 @@ class DataIngestionConfig:
 class DataValidationconfig:
     root_dir:Path
     STATUS_FILE:str
-    ALL_REQUIRED_FILES :list    
+    ALL_REQUIRED_FILES :list   
+
+
+@dataclass(frozen=True)
+class DataTransformationconfig:
+    root_dir:Path
+    data_path:Path
+    tokenizer_name:Path     
